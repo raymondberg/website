@@ -1,0 +1,23 @@
+id	character_name	character_series	character_variation	costumer_key	resource_key	month_completed	year_completed	media_type	property
+0	batgirl	super hero girls		1	1		2018	cartoon	dc
+1	mr freeze	arkham city		1	1		2016	video game	dc
+2	phantasm	mask of the phantasm		1	1		2018	cartoon	dc
+3	makoto	persona 5	winter	1	1	4	2018	video game	persona/shin megami tensei
+4	makoto	persona 5	dancing star night	1	1	10		video game	persona/shin megami tensei
+5	ann	persona 5	dancing star night	1	1	2	2019	video game	persona/shin megami tensei
+6	samus	super metroid	damaged varia suit	1	1	1	2019	video game	metroid
+7	batgirl	dc	batgirl knight	1	1		2018	cartoon	dc
+8	kirigiri kyoko	DRV3		1	1		2018	video game	dangan ronpa
+9	rantarou	DRV3		1	1			video game	dangan ronpa
+10	scout harding	dragon age inquisition		1	1		2017	video game	dragon age
+11	valkyrie	marvel	classic	1	1		2016	comics	marvel
+12	joseph joestar	JoJo's Bizarre Adventure: Battle Tendency		1	1		2017	anime	JJBA
+13	rohan	JoJo's Bizarre Adventure: Diamond is Unbreakable		1	1		2017	anime	JJBA
+14	hawkgirl		dc bombshells	1	1		2015	comics	dc
+15	aranea	FFXV		1	1		2017	video game	Square
+16	ganondorf	hyrule warriors		1	1		2015	video game	zelda
+17	splicer	bioshock		1	1		2012	video game	bioshock
+18	general hux	star wars 		1	1		2014	movie	star wars
+19	black canary	batman the animated series		1	1		2013	cartoons	dc
+20	she hulk	hellcat	coney island	1	1		2014	comics	marvel
+21	persephone	lore olympus		1	1	1	2020	comics	webtoon

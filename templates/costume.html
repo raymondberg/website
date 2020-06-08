@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Costume Information</title>
+</head>
+
+<body>
+  {% extends "template.html" %}
+  {% block content %}
+  <center><span class="w3-tag w3-wide">{{ costume.character_variation }} {{ costume.character_name }} </span></center>
+		<div class="w3-container">
+      {{ costume.character_name }} - {{ costume.character_variation }} from {{ costume.character_series }}
+  <br><br>
+  {% for image in costume_images %}
+  <img src="{{image}}" width=20%>
+  {% endfor %}
+  {% endblock %}
+		</div>
+</body>
+</html>

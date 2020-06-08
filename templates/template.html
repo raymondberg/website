@@ -1,0 +1,58 @@
+ <!DOCTYPE html>
+<html lang="en">
+ <head>
+   <title>KataMarija Cosplay</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata">
+<style>
+body, html {
+  height: 50%;
+  font-family: "Inconsolata", sans-serif;
+}
+
+.bgimg {
+  background-position: center;
+  background-size: cover;
+  background-image: url("/images/milkyway.jpg");
+  min-height: 75%;
+}
+</style>
+</head>
+
+<div class="w3-top">
+  <div class="w3-row w3-padding w3-black">
+    <div class="w3-col s3">
+      <a href="{{ url_for('index') }}" class="w3-button w3-block w3-black">Home</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="{{ url_for('get_all') }}" class="w3-button w3-block w3-black">All Costumes</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="{{ url_for('about') }}" class="w3-button w3-block w3-black">About</a>
+    </div>
+    <div class="w3-col s3">
+      <a href="{{ url_for('blm') }}" class="w3-button w3-block w3-black">Black Lives Matter</a>
+    </div>
+  </div>
+</div>
+
+<header class="bgimg w3-display-container w3-grayscale-min" id="home">
+  <div class="w3-display-middle w3-center">
+    <span class="w3-text-white" style="font-size:50px">katamarija</span>
+  </div>
+  <div class="w3-display-bottomright w3-center w3-padding-large">
+    <span class="w3-text-white">cosplay + crafting</span>
+  </div>
+</header>
+
+<div class="w3-sand w3-grayscale w3-large">
+
+<div class="w3-container" style="padding-bottom:32px">
+<body>
+    {% block content %}
+    {% endblock %}
+</div>
+</body>
+</html>
