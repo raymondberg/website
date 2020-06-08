@@ -1,0 +1,10 @@
+{
+"name": "website",
+"version": "1.0.0",
+"scripts": {
+  "start":"app.py"
+},
+"author": "Marija",
+"license": "ISC"
+}
+
