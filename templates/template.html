@@ -1,7 +1,10 @@
  <!DOCTYPE html>
 <html lang="en">
  <head>
-   <title>KataMarija Cosplay</title>
+  {% if title %} <title>{{ title }}</title>
+  {% else %}
+  <title>KataMarija Cosplay</title>
+  {% endif %}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -9,50 +12,110 @@
 <style>
 body, html {
   height: 50%;
+  background-color:#ebf3fa!important;
   font-family: "Inconsolata", sans-serif;
 }
-
 .bgimg {
   background-position: center;
   background-size: cover;
-  background-image: url("/images/milkyway.jpg");
+  background-image: url("static/images/milkyway.jpg");
   min-height: 75%;
+}
+.top,.bottom {
+  position:fixed;
+  width:100%;
+  z-index:1;
+  color:#fff!important;
+  background-color:#000!important
+}
+.top { top:0 }
+.bottom { bottom:0 }
+.body {
+  color:#000!important;
+  font-size:16px!important;
+}
+.padding{
+  padding:8px 16px!important
+}
+.padding-large{padding:12px 24px!important}
+.container:after,.row:after {
+  content:"";
+  display:table;
+  clear:both
+}
+.container {
+  padding:0.01em 16px
+}
+.bodytitle {
+  background-color:#072c52;
+  color:#fff;
+  display:inline-block;
+  padding-left:8px;
+  padding-right:8px;
+  text-align:center;
+  letter-spacing:4px
+}
+.col {
+  float:left;
+  width:24.99999%
+}
+.text-white {
+  color:#fff!important
+}
+.small {
+  font-size:15px
+}
+.header-button {
+  display:block;
+  width:100%
 }
 </style>
 </head>
 
-<div class="w3-top">
-  <div class="w3-row w3-padding w3-black">
-    <div class="w3-col s3">
-      <a href="{{ url_for('index') }}" class="w3-button w3-block w3-black">Home</a>
+<div class="top">
+  <div class="row padding">
+    <div class="col">
+      <a href="{{ url_for('index') }}" class="w3-button w3-block">Home</a>
     </div>
-    <div class="w3-col s3">
-      <a href="{{ url_for('get_all') }}" class="w3-button w3-block w3-black">All Costumes</a>
+    <div class="col">
+      <a href="{{ url_for('get_all') }}" class="w3-button w3-block">All Costumes</a>
     </div>
-    <div class="w3-col s3">
-      <a href="{{ url_for('about') }}" class="w3-button w3-block w3-black">About</a>
+    <div class="col">
+      <a href="{{ url_for('about') }}" class="w3-button w3-block">About</a>
     </div>
-    <div class="w3-col s3">
-      <a href="{{ url_for('blm') }}" class="w3-button w3-block w3-black">Black Lives Matter</a>
+    <div class="col">
+      <a href="{{ url_for('blm') }}" class="w3-button w3-block">Black Lives Matter</a>
     </div>
   </div>
 </div>
 
 <header class="bgimg w3-display-container w3-grayscale-min" id="home">
   <div class="w3-display-middle w3-center">
-    <span class="w3-text-white" style="font-size:50px">katamarija</span>
+    <span class="text-white" style="font-size:50px">katamarija</span>
   </div>
   <div class="w3-display-bottomright w3-center w3-padding-large">
-    <span class="w3-text-white">cosplay + crafting</span>
+    <a href="https://instagram.com/katamarija"><img src="static/images/instagram.png" height=35px></a>
+    <a href="https://twitter.com/katamarija"><img src="static/images/twitter.png" height=30px></a>
+    <a href="https://tiktok.com/@katamarija"><img src="static/images/tiktok.png" height=35px></a>
+    <br>
+    <span class="text-white">cosplay + crafting</span>
   </div>
 </header>
 
-<div class="w3-sand w3-grayscale w3-large">
-
-<div class="w3-container" style="padding-bottom:32px">
-<body>
+<div class="body">
+  <div class="container" style="padding-bottom:32px">
+  <body>
+  <div class="padding"></div>
     {% block content %}
     {% endblock %}
+  </div>
 </div>
 </body>
+
+<div class="bottom">
+  <div class="row padding">
+    <span class="text-white small">template from w3schools</span>
+  </div>
+</div>
+
 </html>

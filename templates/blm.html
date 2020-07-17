@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html>
- <head>
-   <title>Black Lives Matter Resources</title>
-</head>
  <body>
   {% extends "template.html" %}
   {% block content %}
 
-  <center><span class="w3-tag w3-wide">BLACK LIVES MATTER RESOURCES</span>
-    <b><p> Listen. Learn. Speak Up, but not Over </p></b></center>
+  <center>
+    <span class="bodytitle padding">BLACK LIVES MATTER RESOURCES</span>
+    <b><p> Listen. Learn. Speak Up, but not Over </p></b>
+  </center>
   {% for cat in link_cat %}
   <p>{{ cat }} Resources</p>
   {% for link in links %}

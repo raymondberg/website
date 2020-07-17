@@ -1,28 +1,65 @@
 <!DOCTYPE html>
 <html>
   {% extends "template.html" %}
+ {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
   {% block content %}
-  <center><span class="w3-tag w3-wide">COSPLAY DATABASE</span></center>
-  <div class="w3-container">
+<center>
+  <span class="bodytitle padding">cosplay database</span>
+</center>
+<div class="w3-container">
+  <div class="w3-half">
   	There are {{ total }} available costumes right now!
     <br><br>
   	The whole list here!
     <br><br>
   	{% for costume in costumes %}
-    <a href="/costumes/{{costume.id}}">{{ costume.character_variation}} {{ costume.character_name}}</a><br>
+    <a href="/costumes-{{costume.id}}">{{ costume.character_variation}} {{ costume.character_name}}</a><br>
   	{% endfor %}
   </div>
 
-  <div class="w3-content">
-    <span class="w3-tag w3-wide">ADD NEW COSTUME</span>
-    <p><span class="w3-tag">FYI!</span> </p> 
-    <form action="/action_page.php" target="_blank">
-      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Character Name" required name="character_name"></p>
-      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Variation" required name="character_variation"></p>
-      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Series" required name="character_series"></p>
-      <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Media Type" required name="media_type"></p>
-      <p><button class="w3-button w3-black" type="submit">SUBMIT</button></p>
+<div class="w3-half">
+ <form action="" method="post" novalidate>
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.character_name.label }}<br>
+            {{ form.character_name(size=32) }}
+            {% for error in form.character_name.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.character_series.label }}<br>
+            {{ form.character_series(size=32) }}
+            {% for error in form.character_series.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.character_variation.label }}<br>
+            {{ form.character_variation(size=32) }}
+            {% for error in form.character_variation.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.media_type.label }}<br>
+            {{ form.media_type(size=32) }}
+            {% for error in form.media_type.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>{{ form.completed() }} {{ form.completed.label }}</p>
+        <p>{{ form.submit() }}</p>
     </form>
+  </div>
   </div>
 
   {% endblock %}

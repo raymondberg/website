@@ -1,13 +1,17 @@
-from flask import Flask
+from flask import Flask, render_template, flash, redirect
 from flask_sqlalchemy import SQLAlchemy
+from config import Config
 from sqlalchemy import *
-from flask import render_template
 import csv
+from flask_wtf import FlaskForm
+from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///costuming.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config.from_object(Config)
 
 db = SQLAlchemy(app)
 
@@ -47,26 +51,52 @@ def create(character_name, character_series, character_variation):
     costume = Costume(character_name=character_name, character_series=character_series, character_variation=character_variation)
     db.session.add(costume)
     db.session.commit()
-
     return '<h1>Added new Costume!</h1>'
 
-@app.route('/costumes/<id>')
+class CostumeForm(FlaskForm):
+    character_name = StringField('Character Name', validators=[DataRequired()])
+    character_series = StringField('Character Series', validators=[DataRequired()])
+    character_variation = StringField('Variation', validators=[DataRequired()])
+    media_type = StringField('Media Type', validators=[DataRequired()])
+    completed = BooleanField('Completed?')
+    submit = SubmitField('Submit')
+
+@app.route('/action_page')
+def form_submit():
+    return render_template('action_page.html')
+
+@app.route('/costumes-<id>')
 def get_costume(id):
     costume = Costume.query.filter_by(id=id).first()
     images = Images.query.all()
+    title = str(costume.character_name)
     costume_images = []
     for image in images:
         if image.costume_id == costume.id:
             costume_images.append(image.image_url)
         else:
             pass
-    return render_template('costume.html', costume=costume, costume_images=costume_images)
+    return render_template('costume.html', title=title, costume=costume, costume_images=costume_images)
 
-@app.route('/all')
+def create(character_name, character_series, character_variation):
+    costume = Costume(character_name=character_name, character_series=character_series, character_variation=character_variation)
+    db.session.add(costume)
+    db.session.commit()
+    return character_name
+
+@app.route('/all', methods=['GET', 'POST'])
 def get_all():
     total = Costume.query.count()
     all_costumes = Costume.query.all()
-    return render_template('all_costumes.html', costumes=all_costumes, total=total)
+    form = CostumeForm()
+    if form.validate_on_submit():
+        print("The CHARACTER IS:", form.character_name)
+
+        ### FLASH ISN'T WORKING
+        flash('Costume Submission for {}'.format(
+            form.character_name.data, form.character_series.data, form.character_variation.data, form.media_type.data))
+        return redirect('/all') #add a failed page?
+    return render_template('all_costumes.html', title='All Costumes',  costumes=all_costumes, total=total, form=form)
 
 @app.route('/')
 def index():
@@ -81,11 +111,11 @@ def blm():
             link_cat.append(link.category)
         else:
             pass
-    return render_template('blm.html', links=links, link_cat=link_cat)
+    return render_template('blm.html', title='Black Lives Matter', links=links, link_cat=link_cat)
 
 @app.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.html', title='About Me')
 
 if __name__ == '__main__':
     app.run(debug=True)
